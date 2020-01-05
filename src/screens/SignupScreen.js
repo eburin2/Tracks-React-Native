@@ -8,6 +8,7 @@ const SignupScreen = ({ navigation }) => {
   const { state, signup } = useContext(AuthContext);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+
   return (
     <View style={styles.container}>
       <Spacer>
@@ -29,6 +30,7 @@ const SignupScreen = ({ navigation }) => {
         autoCapitalize="none"
         autoCorrect={false}
       />
+      {state.errorMessage ? <Text style={styles.errorMessage}>{state.errorMessage}</Text> : null }
       <Spacer>
         <Button title="Sign Up" onPress={() => signup({ email, password})} />
       </Spacer>
@@ -51,6 +53,13 @@ const styles = StyleSheet.create({
   },
   heading: {
     textAlign: 'center'
+  },
+  errorMessage: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'red',
+    textAlign: 'center',
+    marginTop: 10
   }
 });
 
